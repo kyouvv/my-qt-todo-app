@@ -11,7 +11,7 @@ class Ui(QtWidgets.QMainWindow):
         uic.loadUi('todoapp.ui', self) # Load the .ui file
         self.show() # Show the GUI
 
-        self.today = datetime.now()
+        self.today = str(datetime.now())
         self.add_task.clicked.connect(self.addtask)
         self.remove_task.clicked.connect(self.removetask)
         self.actionOpen.triggered.connect(self.openfile)
@@ -21,9 +21,8 @@ class Ui(QtWidgets.QMainWindow):
         
         todo, confirmed = QtWidgets.QInputDialog.getText(self, "Add Todo", "New Todo: ")
         if confirmed and not todo.isspace():
-            
             item = QtWidgets.QListWidgetItem()
-            item.setText(todo, + self.today)
+            item.setText(todo + "  |  " + self.today)
             self.tasks_list.addItem(item)
 
         print("Add")
